@@ -1,0 +1,9 @@
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Payment Cancelled</h2>
+    <p>Your payment was cancelled. Please try booking again.</p>
+    <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Appointment</a>
+</div>
+{% endblock %}

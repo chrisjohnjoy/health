@@ -1,0 +1,39 @@
+<!-- templates/User/medical_history.html -->
+
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Medical History</h2>
+    <div class="medical-history-list">
+        {% for history in medical_histories %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Date: {{ history.date }}</h3>
+                <p><strong>Diagnosis:</strong> {{ history.diagnosis }}</p>
+                <p><strong>Medications:</strong> {{ history.medications }}</p>
+                <p><strong>Allergies:</strong> {{ history.allergies }}</p>
+                <p><strong>Treatment:</strong> {{ history.treatment }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .medical-history-list .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+    .medical-history-list .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .medical-history-list .card-body p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,10 @@
+<!-- This can be part of your delete view -->
+{% extends 'admin_user/admin_base.html' %}
+{% block content %}
+<h2>Are you sure you want to delete "{{ resource.title }}"?</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Confirm Delete">
+    <a href="{% url 'health_resource_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'admin_user/admin_base.html' %}
+{% block content %}
+<h2>Health Education Resources</h2>
+<a href="{% url 'add_health_resource' %}" class="btn btn-primary mb-2">Add New Resource</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>URL</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for resource in resources %}
+        <tr>
+            <td>{{ resource.title }}</td>
+            <td>{{ resource.description }}</td>
+            <td><a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a></td>
+            <td>
+                <a href="{% url 'update_health_resource' resource.pk %}" class="btn btn-warning">Edit</a>
+                <form action="{% url 'delete_health_resource' resource.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

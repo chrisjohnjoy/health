@@ -1,0 +1,63 @@
+<!-- User/book_appointment.html -->
+
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Book Appointment</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_doctor">Doctor:</label>
+      <select id="id_doctor" name="doctor" class="form-control">
+        {% for doctor in doctors %}
+        <option value="{{ doctor.id }}">{{ doctor.first_name }} {{ doctor.last_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="id_date">Date:</label>
+      <input type="date" id="id_date" name="date" class="form-control" onchange="loadAvailableTimes()">
+    </div>
+    <div class="form-group">
+      <label for="id_time">Time:</label>
+      <select id="id_time" name="time" class="form-control">
+        <!-- Options dynamically populated based on selected date and doctor -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="id_description">Description:</label>
+      <textarea id="id_description" name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Book Appointment</button>
+  </form>
+</div>
+
+<script>
+  function loadAvailableTimes() {
+    var doctorId = document.getElementById('id_doctor').value;
+    var date = document.getElementById('id_date').value;
+    var timeSelect = document.getElementById('id_time');
+    
+    // Clear previous options
+    timeSelect.innerHTML = '';
+
+    // Default start and end time for appointment slots
+    var startTime = 8;  // Start time (in 24-hour format, e.g., 8 AM)
+    var endTime = 17;   // End time (in 24-hour format, e.g., 5 PM)
+
+    for (var hour = startTime; hour <= endTime; hour++) {
+      // Create options for each hour
+      var option = document.createElement('option');
+      option.value = hour + ':00';  // Format as HH:00
+      option.textContent = hour + ':00';
+      timeSelect.appendChild(option);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    loadAvailableTimes();  // Initial load of available times
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<h2>Are you sure you want to delete this appointment?</h2>
+<p>Appointment with Dr. {{ appointment.doctor.name }} on {{ appointment.date }} at {{ appointment.time }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

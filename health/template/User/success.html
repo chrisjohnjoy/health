@@ -1,0 +1,9 @@
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Payment Successful</h2>
+    <p>Your appointment with Dr. {{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }} on {{ appointment.date }} at {{ appointment.time }} has been confirmed.</p>
+    <a href="{% url 'appointment_list' %}" class="btn btn-primary">View Appointments</a>
+</div>
+{% endblock %}

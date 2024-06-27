@@ -1,0 +1,19 @@
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<h2>Checkout</h2>
+<p>Please review and complete your payment:</p>
+<p><strong>Appointment Details:</strong></p>
+<ul>
+    <li><strong>Doctor:</strong> {{ appointment.doctor }}</li>
+    <li><strong>Date:</strong> {{ appointment.date }}</li>
+    <li><strong>Time:</strong> {{ appointment.time }}</li>
+    <li><strong>Description:</strong> {{ appointment.description }}</li>
+</ul>
+
+<form action="{% url 'create_checkout_session' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+    <button type="submit" class="btn btn-primary">Pay Now</button>
+</form>
+{% endblock %}

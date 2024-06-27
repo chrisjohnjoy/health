@@ -1,0 +1,39 @@
+{% extends 'admin_user\admin_base.html' %}
+
+{% block content %}
+<h2>User Management</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Place</th>
+            <th>District</th>
+            <th>State</th>
+            <th>Pincode</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.place }}</td>
+            <td>{{ user.district }}</td>
+            <td>{{ user.state }}</td>
+            <td>{{ user.pincode }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            <td>
+                <a href="{% url 'update_user' user.pk %}" class="btn btn-warning">Edit</a>
+            </td>  
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!-- templates/health_resources/health_resource_list.html -->
+
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Health Education Resources</h2>
+    <div class="resource-list">
+        {% for resource in resources %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ resource.title }}</h3>
+                <p class="card-text">{{ resource.description }}</p>
+                {% if resource.url %}
+                <a href="{{ resource.url }}" class="btn btn-primary" target="_blank">Learn More</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .resource-list .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+    .resource-list .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .resource-list .card-text {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .resource-list .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .resource-list .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+{% endblock %}

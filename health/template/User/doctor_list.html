@@ -1,0 +1,53 @@
+<!-- templates/doctors/doctor_list.html -->
+
+{% extends 'User/base_user.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Our Doctors</h2>
+    <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if doctor.image %}
+                <img src="{{ doctor.image.url }}" class="card-img-top" alt="Doctor Image">
+                {% else %}
+                {% comment %} <img src="{% static 'images/default_doctor.png' %}" class="card-img-top" alt="Default Doctor Image"> {% endcomment %}
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.first_name }} {{ doctor.last_name }}</h5>
+                    <p class="card-text">{{ doctor.specialization }}</p>
+                    <p class="card-text">{{ doctor.bio|truncatewords:20 }}</p>
+                    <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+{% endblock %}

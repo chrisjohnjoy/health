@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Admin Dashboard</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- Font awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- Responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- Header section starts -->
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container">
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>Call : +01 123455678990</span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>Email : demo@gmail.com</span>
+            </a>
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>Location</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="{% url 'adminhome' %}">
+              <img src="{% static 'images/logo.png' %}" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                {% comment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_statistics' %}">Statistics</a>
+                </li>
+                {% endcomment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user_list' %}">User Management</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="facilityManagementDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Facility Management
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="facilityManagementDropdown">
+                    <a class="dropdown-item" href="{% url 'department_list' %}">Departments</a>
+                    <a class="dropdown-item" href="{% url 'doctor_list' %}">Doctors</a>
+                  </div>
+                </li>
+                {% comment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_appointment_management' %}">Appointment Management</a>
+                </li>
+                {% endcomment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'health_resource_list' %}">Health Education Resources</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- Header section ends -->
+  </div>
+
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="container mt-5">
+    {% block content %}
+    <!-- Admin specific content will be injected here -->
+    {% endblock %}
+  </div>
+
+  <!-- Footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  <!-- Footer section ends -->
+
+  <!-- jQuery -->
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <!-- Custom JS -->
+  <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

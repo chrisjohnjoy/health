@@ -1,0 +1,20 @@
+{% extends 'admin_user\admin_base.html' %}
+{% block content %}
+<h2>{% if department.pk %}Update{% else %}Add{% endif %} Department</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_name">Name:</label>
+        <input type="text" id="id_name" name="name" value="{{ department.name }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="id_description">Description:</label>
+        <textarea id="id_description" name="description" class="form-control">{{ department.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="id_image">Image:</label>
+        <input type="file" id="id_image" name="image" accept="image/*" class="form-control-file">
+    </div>
+    <button type="submit" class="btn btn-primary">{% if department.pk %}Update{% else %}Add{% endif %}</button>
+</form>
+{% endblock %}
