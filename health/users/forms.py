@@ -18,3 +18,16 @@ class AppointmentForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'doctor': forms.Select(attrs={'class': 'form-control'}),
         }
+
+from django import forms
+from .models import MedicalHistory, Prescription
+
+class MedicalHistoryForm(forms.ModelForm):
+    class Meta:
+        model = MedicalHistory
+        fields = ['diagnosis', 'medications', 'allergies', 'treatment']
+
+class PrescriptionForm(forms.ModelForm):
+    class Meta:
+        model = Prescription
+        fields = ['medications', 'instructions']

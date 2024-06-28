@@ -68,7 +68,7 @@ def loginPage(req):
                 elif user_type == 'admin':
                     return redirect('adminhome')
                 elif user_type == 'doctor':
-                    return redirect('index')
+                    return redirect('doctorhome')
                 else:
                     messages.error(req, 'Invalid role')
             else:
@@ -219,7 +219,7 @@ def create_checkout_session(request, pk):
         payment_method_types=['card'],
         line_items=[{
             'price_data': {
-                'currency': 'usd',
+                'currency': 'inr',
                 'product_data': {
                     'name': f'Appointment with Dr. {appointment.doctor.first_name}',
                 },

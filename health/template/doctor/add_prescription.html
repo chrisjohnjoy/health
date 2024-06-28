@@ -1,0 +1,14 @@
+<!-- doctor/add_prescription.html -->
+
+{% extends 'doctor/doctorindex.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Add Prescription</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save Prescription</button>
+  </form>
+</div>
+{% endblock %}

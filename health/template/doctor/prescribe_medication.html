@@ -1,0 +1,21 @@
+{% extends 'doctor/doctorindex.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Prescribe Medication</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="medications">Medications:</label>
+      <textarea class="form-control" id="medications" name="medications" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructions:</label>
+      <textarea class="form-control" id="instructions" name="instructions" rows="3" required></textarea>
+    </div>
+    <input type="hidden" name="patient_id" value="{{ patient.id }}">
+    <button type="submit" class="btn btn-primary">Prescribe</button>
+  </form>
+</div>
+{% endblock %}

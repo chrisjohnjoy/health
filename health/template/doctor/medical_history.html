@@ -1,0 +1,22 @@
+<!-- user/medical_history.html -->
+
+{% extends 'user/base_user.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Medical History</h2>
+  <ul>
+    {% for history in medical_histories %}
+    <li>
+      <h4>{{ history.date }}</h4>
+      <p><strong>Diagnosis:</strong> {{ history.diagnosis }}</p>
+      <p><strong>Medications:</strong> {{ history.medications }}</p>
+      <p><strong>Allergies:</strong> {{ history.allergies }}</p>
+      <p><strong>Treatment:</strong> {{ history.treatment }}</p>
+    </li>
+    {% empty %}
+    <li>No medical history entries found.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

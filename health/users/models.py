@@ -59,3 +59,14 @@ class MedicalHistory(models.Model):
 
     def __str__(self):
         return f"Medical History for {self.user.name} on {self.date}"
+    
+
+class Prescription(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
+    medications = models.TextField()
+    instructions = models.TextField()
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Prescription by Dr. {self.doctor.name} for {self.patient.name} on {self.date}"
